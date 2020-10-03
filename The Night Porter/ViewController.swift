@@ -10,7 +10,30 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBAction func enableDarkMode(_ sender: Any) {
-        view.backgroundColor = UIColor.darkGray
+        
+        if view.backgroundColor == UIColor.black {
+            view.backgroundColor = UIColor.white
+            
+            let viewSubviews = view.subviews
+            for eachView in viewSubviews {
+                if eachView is UILabel {
+                    let currentLable = eachView as! UILabel
+                    currentLable.textColor = UIColor.black
+                }
+            }
+        } else {
+            view.backgroundColor = UIColor.black
+            
+            let viewSubviews = view.subviews
+            for eachView in viewSubviews {
+                if eachView is UILabel {
+                    let currentLable = eachView as! UILabel
+                    currentLable.textColor = UIColor.white
+                }
+            }
+        }
+        
+        
     }
     
     override func viewDidLoad() {

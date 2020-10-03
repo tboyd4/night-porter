@@ -129,9 +129,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YBF-SA-wHV">
-                                <rect key="frame" x="31" y="584" width="75" height="30"/>
+                                <rect key="frame" x="26" y="589" width="105" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Dark Mode"/>
+                                <state key="normal" title="Change Theme"/>
                                 <connections>
                                     <action selector="enableDarkMode:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZTh-TX-dDV"/>
                                 </connections>
