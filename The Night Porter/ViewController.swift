@@ -7,40 +7,83 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    @IBAction func enableDarkMode(_ sender: Any) {
+    // Table View Data Source Methods
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+        case 0:
+            return dailyTasks.count
+        case 1:
+            return weeklyTasks.count
+        case 2:
+            return monthlyTasks.count
+        default:
+            return 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
         
-        // conditional to decide current theme
-        if view.backgroundColor == UIColor.black {
-            view.backgroundColor = UIColor.white
-            
-            // place all subviews into an array
-            let viewSubviews = view.subviews
-            // loop through subviews
-            for eachView in viewSubviews {
-                // for each subview, decide if its a label
-                if eachView is UILabel {
-                    // if it is a label, downcast it specifically as a label
-                    let currentLable = eachView as! UILabel
-                    // take that variable, depicting the currently selected subview, and make the text black
-                    currentLable.textColor = UIColor.black
-                }
-            }
-        } else {
-            view.backgroundColor = UIColor.black
-            
-            // same as above, but if the theme was in dark mode
-            let viewSubviews = view.subviews
-            for eachView in viewSubviews {
-                if eachView is UILabel {
-                    let currentLable = eachView as! UILabel
-                    currentLable.textColor = UIColor.white
-                }
-            }
+        switch indexPath.section {
+        case 0:
+            cell.textLabel?.text = dailyTasks[indexPath.row]
+        case 1:
+            cell.textLabel?.text = weeklyTasks[indexPath.row]
+        case 2:
+            cell.textLabel?.text = monthlyTasks[indexPath.row]
+        default:
+            cell.textLabel?.text = "This shouldn't ever happen"
         }
         
+        return cell
     }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0:
+            return "Daily Tasks"
+        case 1:
+            return "Weekly Tasks"
+        case 2:
+            return "Monthly Tasks"
+        default:
+            return nil
+        }
+    }
+    
+    // Table View Delegate Methods
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("You selected row \(indexPath.row) in section \(indexPath.section)")
+    }
+    
+    
+    // string arrays of tasks, separated by section
+    
+    let dailyTasks = [
+        "Check All Windows",
+        "Check All Doors",
+        "Fuel Boiler",
+        "Check Mailbox",
+        "Empty Trash Containers",
+        "Check Water Pipes",
+        "Document Strange Occurrences"
+    ]
+    let weeklyTasks = [
+        "Check All Cabins",
+        "Flush All Lavoratories",
+        "Walk Perimeter of Property"
+    ]
+    let monthlyTasks = [
+        "Test Security Alarms",
+        "Test Motion Detectors",
+        "Test Smoke Alarms"
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
